@@ -90,4 +90,4 @@ This should not take more than 5 min to run. This will enter the testing [[https
 python save_results.py
 #+END_SRC
 
-You can then view the [[https://github.com/kyrarivest/ACRES_REU_Project_2021/blob/main/examples/results.txt][*results.txt*]] file to see a list of the results for multiple PCA training/testing model examples if you run many.
+You can then view the [[https://github.com/kyrarivest/ACRES_REU_Project_2021/blob/main/examples/results.txt][*results.txt*]] file to see a list of the results for multiple PCA training/testing model examples if you run many. The first value is the r squared and the second value is the RMSE.
