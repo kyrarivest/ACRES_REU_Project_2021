@@ -1,0 +1,13 @@
+#!/bin/bash --login
+#SBATCH -n 1 -c 21
+#SBATCH -J 2D_CG_OP
+#SBATCH --time=24:00:00
+#SBATCH --mem=50G
+#SBATCH --mail-user=kyrarivest@brandeis.edu
+#SBATCH --mail-type=FAIL,BEGIN,END
+
+LOG="train-log"
+
+module purge
+
+python -W ignore -u train_models.py 1>> $LOG 2>> $LOG

@@ -1,0 +1,17 @@
+* Deep Neural model return results:
+- Training dataset name: OpenChem
+- Feature's force field: CGenFF
+- Atom type: AC36
+* Test Results:
+** Numner of Wavelet matrix steps: 4
+** Scattetring moments:
+- Zero order: True
+- First order: True
+- Second order: True
+** results:
+
+╒══════════╤══════════╤══════════╤══════════╤════════╤════════╤════════╕
+│          │      PCC │     RMSE │      MUE │   <0.5 │     <1 │     >1 │
+╞══════════╪══════════╪══════════╪══════════╪════════╪════════╪════════╡
+│ OpenChem │ 0.667455 │ 0.812255 │ 0.587829 │ 57.391 │ 25.507 │ 17.101 │
+╘══════════╧══════════╧══════════╧══════════╧════════╧════════╧════════╛

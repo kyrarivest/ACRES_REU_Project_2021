@@ -1,0 +1,209 @@
+Start training model 4 (z,f,s)
+Save the model in models/OpenChem/model_4_zfs.pkl
+Model with rank: 0
+Mean validation score: 0.782 (std: 0.007)
+Parameters: {'module__dropout': 0.2, 'module__n_h': 400, 'module__n_in': 50, 'module__n_layers': 2}
+Model with rank: 1
+Mean validation score: 0.782 (std: 0.008)
+Parameters: {'module__dropout': 0.2, 'module__n_h': 500, 'module__n_in': 50, 'module__n_layers': 1}
+Model with rank: 2
+Mean validation score: 0.782 (std: 0.009)
+Parameters: {'module__dropout': 0.2, 'module__n_h': 400, 'module__n_in': 50, 'module__n_layers': 1}
+Model with rank: 3
+Mean validation score: 0.778 (std: 0.007)
+Parameters: {'module__dropout': 0.2, 'module__n_h': 300, 'module__n_in': 50, 'module__n_layers': 1}
+Model with rank: 4
+Mean validation score: 0.775 (std: 0.010)
+Parameters: {'module__dropout': 0.2, 'module__n_h': 300, 'module__n_in': 50, 'module__n_layers': 2}
+Model with rank: 5
+Mean validation score: 0.768 (std: 0.006)
+Parameters: {'module__dropout': 0.4, 'module__n_h': 500, 'module__n_in': 50, 'module__n_layers': 1}
+Model with rank: 6
+Mean validation score: 0.762 (std: 0.007)
+Parameters: {'module__dropout': 0.4, 'module__n_h': 300, 'module__n_in': 50, 'module__n_layers': 1}
+Model with rank: 7
+Mean validation score: 0.757 (std: 0.011)
+Parameters: {'module__dropout': 0.4, 'module__n_h': 400, 'module__n_in': 50, 'module__n_layers': 1}
+Model with rank: 8
+Mean validation score: 0.740 (std: 0.005)
+Parameters: {'module__dropout': 0.4, 'module__n_h': 400, 'module__n_in': 50, 'module__n_layers': 2}
+Model with rank: 9
+Mean validation score: 0.718 (std: 0.009)
+Parameters: {'module__dropout': 0.4, 'module__n_h': 300, 'module__n_in': 50, 'module__n_layers': 2}
+Wall time:  1120.669 seconds
+Start training model 4 (z,f,s)
+Traceback (most recent call last):
+  File "train_models.py", line 155, in <module>
+    wall_time = create_model(wavelet_scale, scattering_operators)
+  File "train_models.py", line 81, in create_model
+    split_dataset(wavelet_scale, scattering_operators)
+  File "train_models.py", line 56, in split_dataset
+    with open(save_file_path, 'rb') as rfile:
+FileNotFoundError: [Errno 2] No such file or directory: 'data_4_zfs/OpenChem/OpenChem.pkl'
+Start training model 4 (z,f,s)
+Wall time:  0.001 seconds
+Start training model 4 (z,f,s)
+Save the model in models/OpenChem/model_4_zfs.pkl
+Model with rank: 0
+Mean validation score: 0.641 (std: 0.024)
+Parameters: {'module__dropout': 0.2, 'module__n_h': 300, 'module__n_in': 50, 'module__n_layers': 2}
+Model with rank: 1
+Mean validation score: 0.620 (std: 0.025)
+Parameters: {'module__dropout': 0.2, 'module__n_h': 400, 'module__n_in': 50, 'module__n_layers': 2}
+Model with rank: 2
+Mean validation score: 0.607 (std: 0.022)
+Parameters: {'module__dropout': 0.2, 'module__n_h': 300, 'module__n_in': 50, 'module__n_layers': 1}
+Model with rank: 3
+Mean validation score: 0.607 (std: 0.032)
+Parameters: {'module__dropout': 0.4, 'module__n_h': 400, 'module__n_in': 50, 'module__n_layers': 1}
+Model with rank: 4
+Mean validation score: 0.603 (std: 0.030)
+Parameters: {'module__dropout': 0.4, 'module__n_h': 300, 'module__n_in': 50, 'module__n_layers': 2}
+Model with rank: 5
+Mean validation score: 0.596 (std: 0.024)
+Parameters: {'module__dropout': 0.4, 'module__n_h': 300, 'module__n_in': 50, 'module__n_layers': 1}
+Model with rank: 6
+Mean validation score: 0.595 (std: 0.026)
+Parameters: {'module__dropout': 0.4, 'module__n_h': 400, 'module__n_in': 50, 'module__n_layers': 2}
+Model with rank: 7
+Mean validation score: 0.594 (std: 0.022)
+Parameters: {'module__dropout': 0.2, 'module__n_h': 400, 'module__n_in': 50, 'module__n_layers': 1}
+Model with rank: 8
+Mean validation score: 0.584 (std: 0.050)
+Parameters: {'module__dropout': 0.2, 'module__n_h': 400, 'module__n_in': 50, 'module__n_layers': 3}
+Model with rank: 9
+Mean validation score: 0.581 (std: 0.041)
+Parameters: {'module__dropout': 0.4, 'module__n_h': 500, 'module__n_in': 50, 'module__n_layers': 1}
+Wall time:  136.981 seconds
+Start training model 4 (z,f,s)
+Save the model in models/OpenChem/model_4_zfs.pkl
+Model with rank: 0
+Mean validation score: 0.479 (std: 0.017)
+Parameters: {'module__dropout': 0.4, 'module__n_h': 500, 'module__n_in': 50, 'module__n_layers': 2}
+Model with rank: 1
+Mean validation score: 0.471 (std: 0.020)
+Parameters: {'module__dropout': 0.2, 'module__n_h': 400, 'module__n_in': 50, 'module__n_layers': 2}
+Model with rank: 2
+Mean validation score: 0.468 (std: 0.025)
+Parameters: {'module__dropout': 0.2, 'module__n_h': 300, 'module__n_in': 50, 'module__n_layers': 2}
+Model with rank: 3
+Mean validation score: 0.467 (std: 0.032)
+Parameters: {'module__dropout': 0.4, 'module__n_h': 400, 'module__n_in': 50, 'module__n_layers': 1}
+Model with rank: 4
+Mean validation score: 0.465 (std: 0.005)
+Parameters: {'module__dropout': 0.4, 'module__n_h': 300, 'module__n_in': 50, 'module__n_layers': 2}
+Model with rank: 5
+Mean validation score: 0.464 (std: 0.011)
+Parameters: {'module__dropout': 0.2, 'module__n_h': 500, 'module__n_in': 50, 'module__n_layers': 2}
+Model with rank: 6
+Mean validation score: 0.454 (std: 0.005)
+Parameters: {'module__dropout': 0.2, 'module__n_h': 400, 'module__n_in': 50, 'module__n_layers': 3}
+Model with rank: 7
+Mean validation score: 0.450 (std: 0.026)
+Parameters: {'module__dropout': 0.4, 'module__n_h': 500, 'module__n_in': 50, 'module__n_layers': 1}
+Model with rank: 8
+Mean validation score: 0.449 (std: 0.012)
+Parameters: {'module__dropout': 0.4, 'module__n_h': 400, 'module__n_in': 50, 'module__n_layers': 3}
+Model with rank: 9
+Mean validation score: 0.448 (std: 0.006)
+Parameters: {'module__dropout': 0.4, 'module__n_h': 300, 'module__n_in': 50, 'module__n_layers': 1}
+Wall time:  59.629 seconds
+Start training model 4 (z,f,s)
+Save the model in models/OpenChem/model_4_zfs.pkl
+Model with rank: 0
+Mean validation score: 0.618 (std: 0.018)
+Parameters: {'module__dropout': 0.2, 'module__n_h': 300, 'module__n_in': 50, 'module__n_layers': 2}
+Model with rank: 1
+Mean validation score: 0.609 (std: 0.009)
+Parameters: {'module__dropout': 0.2, 'module__n_h': 300, 'module__n_in': 50, 'module__n_layers': 1}
+Model with rank: 2
+Mean validation score: 0.607 (std: 0.019)
+Parameters: {'module__dropout': 0.4, 'module__n_h': 400, 'module__n_in': 50, 'module__n_layers': 2}
+Model with rank: 3
+Mean validation score: 0.605 (std: 0.028)
+Parameters: {'module__dropout': 0.4, 'module__n_h': 300, 'module__n_in': 50, 'module__n_layers': 1}
+Model with rank: 4
+Mean validation score: 0.604 (std: 0.051)
+Parameters: {'module__dropout': 0.2, 'module__n_h': 400, 'module__n_in': 50, 'module__n_layers': 4}
+Model with rank: 5
+Mean validation score: 0.599 (std: 0.018)
+Parameters: {'module__dropout': 0.4, 'module__n_h': 300, 'module__n_in': 50, 'module__n_layers': 2}
+Model with rank: 6
+Mean validation score: 0.594 (std: 0.034)
+Parameters: {'module__dropout': 0.4, 'module__n_h': 400, 'module__n_in': 50, 'module__n_layers': 1}
+Model with rank: 7
+Mean validation score: 0.590 (std: 0.003)
+Parameters: {'module__dropout': 0.2, 'module__n_h': 400, 'module__n_in': 50, 'module__n_layers': 1}
+Model with rank: 8
+Mean validation score: 0.587 (std: 0.033)
+Parameters: {'module__dropout': 0.2, 'module__n_h': 400, 'module__n_in': 50, 'module__n_layers': 2}
+Model with rank: 9
+Mean validation score: 0.583 (std: 0.020)
+Parameters: {'module__dropout': 0.2, 'module__n_h': 300, 'module__n_in': 50, 'module__n_layers': 3}
+Wall time:  131.478 seconds
+Start training model 4 (z,f,s)
+Save the model in models/OpenChem/model_4_zfs.pkl
+Model with rank: 0
+Mean validation score: 0.675 (std: 0.015)
+Parameters: {'module__dropout': 0.2, 'module__n_h': 400, 'module__n_in': 50, 'module__n_layers': 2}
+Model with rank: 1
+Mean validation score: 0.662 (std: 0.034)
+Parameters: {'module__dropout': 0.2, 'module__n_h': 300, 'module__n_in': 50, 'module__n_layers': 2}
+Model with rank: 2
+Mean validation score: 0.653 (std: 0.037)
+Parameters: {'module__dropout': 0.2, 'module__n_h': 400, 'module__n_in': 50, 'module__n_layers': 3}
+Model with rank: 3
+Mean validation score: 0.651 (std: 0.029)
+Parameters: {'module__dropout': 0.2, 'module__n_h': 500, 'module__n_in': 50, 'module__n_layers': 1}
+Model with rank: 4
+Mean validation score: 0.650 (std: 0.017)
+Parameters: {'module__dropout': 0.2, 'module__n_h': 400, 'module__n_in': 50, 'module__n_layers': 4}
+Model with rank: 5
+Mean validation score: 0.645 (std: 0.015)
+Parameters: {'module__dropout': 0.2, 'module__n_h': 400, 'module__n_in': 50, 'module__n_layers': 1}
+Model with rank: 6
+Mean validation score: 0.644 (std: 0.012)
+Parameters: {'module__dropout': 0.2, 'module__n_h': 300, 'module__n_in': 50, 'module__n_layers': 1}
+Model with rank: 7
+Mean validation score: 0.643 (std: 0.015)
+Parameters: {'module__dropout': 0.4, 'module__n_h': 500, 'module__n_in': 50, 'module__n_layers': 1}
+Model with rank: 8
+Mean validation score: 0.642 (std: 0.007)
+Parameters: {'module__dropout': 0.4, 'module__n_h': 400, 'module__n_in': 50, 'module__n_layers': 2}
+Model with rank: 9
+Mean validation score: 0.640 (std: 0.015)
+Parameters: {'module__dropout': 0.4, 'module__n_h': 400, 'module__n_in': 50, 'module__n_layers': 1}
+Wall time:  191.867 seconds
+Start training model 4 (z,f,s)
+Save the model in models/OpenChem/model_4_zfs.pkl
+Model with rank: 0
+Mean validation score: 0.670 (std: 0.006)
+Parameters: {'module__dropout': 0.2, 'module__n_h': 300, 'module__n_in': 50, 'module__n_layers': 2}
+Model with rank: 1
+Mean validation score: 0.668 (std: 0.025)
+Parameters: {'module__dropout': 0.2, 'module__n_h': 400, 'module__n_in': 50, 'module__n_layers': 2}
+Model with rank: 2
+Mean validation score: 0.655 (std: 0.016)
+Parameters: {'module__dropout': 0.2, 'module__n_h': 400, 'module__n_in': 50, 'module__n_layers': 1}
+Model with rank: 3
+Mean validation score: 0.654 (std: 0.029)
+Parameters: {'module__dropout': 0.4, 'module__n_h': 300, 'module__n_in': 50, 'module__n_layers': 1}
+Model with rank: 4
+Mean validation score: 0.653 (std: 0.016)
+Parameters: {'module__dropout': 0.2, 'module__n_h': 300, 'module__n_in': 50, 'module__n_layers': 1}
+Model with rank: 5
+Mean validation score: 0.651 (std: 0.040)
+Parameters: {'module__dropout': 0.2, 'module__n_h': 400, 'module__n_in': 50, 'module__n_layers': 3}
+Model with rank: 6
+Mean validation score: 0.650 (std: 0.014)
+Parameters: {'module__dropout': 0.4, 'module__n_h': 400, 'module__n_in': 50, 'module__n_layers': 2}
+Model with rank: 7
+Mean validation score: 0.639 (std: 0.009)
+Parameters: {'module__dropout': 0.4, 'module__n_h': 500, 'module__n_in': 50, 'module__n_layers': 1}
+Model with rank: 8
+Mean validation score: 0.637 (std: 0.015)
+Parameters: {'module__dropout': 0.2, 'module__n_h': 500, 'module__n_in': 50, 'module__n_layers': 1}
+Model with rank: 9
+Mean validation score: 0.636 (std: 0.014)
+Parameters: {'module__dropout': 0.4, 'module__n_h': 400, 'module__n_in': 50, 'module__n_layers': 1}
+Wall time:  120.430 seconds

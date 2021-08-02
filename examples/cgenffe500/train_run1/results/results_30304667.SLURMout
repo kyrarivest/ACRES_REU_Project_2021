@@ -1,0 +1,12 @@
+    Dataset  wavelet_scale Scattetring Operators  ...    <0.5      <1     >1
+0  OpenChem              4               (z,f,s)  ...  70.086  21.335  8.579
+
+[1 rows x 9 columns]
+['Dataset', 'wavelet_scale', 'Scattetring Operators', 'PCC', 'RMSE', 'MUE', '<0.5', '<1', '>1']
+
+1
+
+0    0.668355
+Name: RMSE, dtype: float64
+
+0.6683545699356515
