@@ -35,23 +35,47 @@ You can also check to see if you have them installed:
 
 
 
-* Usage
+* Usage: Training
 
-You will first need to prepare the data to train thee neural network model. You need to decide which datasete you want to train on and how many PCA components to use. Once you know this, navigate to the prepare_data.sb file under ClassicalGSG/examples/prepare_data.sb:
-
-#+BEGIN_SRC bash
- python -m LogpPredictor_CGenFF [molecule.mol2] [molecule.str]
-#+END_SRC
-
-To use our MMFF94 ClassicalGSG logP predictor model run the following command:
+You will first need to prepare the data to train the neural network model. You need to decide which dataset you want to train on and how many PCA components to use. Once you know this, navigate to the *prepare_data.sb* file under [[https://github.com/kyrarivest/ACRES_REU_Project_2021/blob/main/examples/prepare_data.sb][ClassicalGSG/examples/prepare_data.sb]]. To edit the file, enter it using the vi command:
 
 #+BEGIN_SRC bash
- python -m LogpPredictor_MMFF94  ['smiles']
+ vi prepare.ab
+ i
 #+END_SRC
 
-You can generate CGenFF parameter files for your molecule using [[https://cgenff.umaryland.edu][CGenFF]]
-online server.
+On the line that execute the *prepare_data.py* file, you have to replace the template inputs with your own. Specify:
 
-* Dataset
-The logP dataset can be downloaded from [[https://doi.org/10.5281/zenodo.4531015][Zenodo]].
-Zenodo DOI: 10.5281/zenodo.4531015
+- The number of PCA components (note: this cannot be larger than the numbeer of molecules in the dataset or else the PCA algorithm won't work)
+- The dataset you want to use (choose ~FDA~, ~Huuskonen~, ~Star~, ~NonStar~, ~openchem~, ~SAMPL6~, or ~SAMPL7~)
+- Wether you are preparing data to train the model or test it with a different dataseet than it was already trained on (choose ~train~ or ~test~)
+
+Save your changes and exit the file:
+
+#+BEGIN_SRC bash
+ esc key
+ :wq
+#+END_SRC
+
+Now run the *prepare_data.sb* file. This will create a new directory set up with the correct PCA number and dataset so that the model can be trained. The directory will be named *cgenffe + <PCA numbere>*. This directory will contain 5 ~train_run~ folders. The training is split up into these 5 folders for [[https://towardsdatascience.com/why-and-how-to-cross-validate-a-model-d6424b45261f][cross validation]]. To run the *prepare_data.sb* file:
+
+#+BEGIN_SRC bash
+ sbatch prepare_data.sb
+#+END_SRC
+
+Once the new directory has been generated, navigate into it. To train the model, execute the *start_training.sh* file which will initiate training in all 5 ~train_run~ files:
+
+#+BEGIN_SRC bash
+sbatch start_training.sh
+#+END_SRC
+
+Wait until the training is finished which could take around 30-60min deepending on which dataset you use. If you do not set up email notifications in the *start_training.sh* file, you can check to see if the trianing is done by navigating into each ~train_run~ foldeer and looking at the *train-log*. When a training round is complete, the log will display the training time as the last line in the file.
+
+* Usage: Testing
+When the model has finished training, you can then test it. In the *cgenffe + <PCA numbere>* directory where you executed training, you can also execute testing. Note: if you are testing with a seperate dataset than you used for training, you will have to go back to the [[https://github.com/kyrarivest/ACRES_REU_Project_2021/blob/main/examples/prepare_data.sb][ClassicalGSG/examples/prepare_data.sb]] and re-prepare test data. Otherwise you can test right away. Navigate to the *cgenffe + <PCA numbere>* directory and run:
+
+#+BEGIN_SRC bash
+sbatch start_test.sh
+#+END_SRC
+
+This should not take more than 5 min to run. This will enter the testing [[https://www.investopedia.com/terms/r/r-squared.asp#:~:text=R%2Dsquared%20(R2),variables%20in%20a%20regression%20model.&text=It%20may%20also%20be%20known%20as%20the%20coefficient%20of%20determination.][R Squared]] and [[https://towardsdatascience.com/what-does-rmse-really-mean-806b65f2e48e#:~:text=Root%20Mean%20Square%20Error%20(RMSE)%20is%20a%20standard%20way%20to,model%20in%20predicting%20quantitative%20data.&text=This%20tells%20us%20heuristically%20that,the%20vector%20of%20observed%20values.][Root Mean Squared Error]] values into the *results.json* file. Next, run the *print_results.py* file to both print the results 
