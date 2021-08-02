@@ -4,7 +4,7 @@ This project builds off a method called ~ClassicalGSG~
 and has introduced by the Michigan State University Dickson Lab in [[https://github.com/ADicksonLab/ClassicalGSG][ClassicalGSG: Prediction of logP Using Classical
 Molecular Force Fields and Geometric Scattering for Graphs]].  The goal of this project is to decrease the size of the feature space and study how the model behaves. This is a template of the code that was used in this project.
 
-There are seven datasets that that was used in this project: FDA, Huuskonen, NonStar, Star, openchem, SAMPL6, and SAMPL7. The method used to reduce the size of the feature space is [[https://jakevdp.github.io/PythonDataScienceHandbook/05.09-principal-component-analysis.html][principal component analysis]]
+There are seven datasets that that was used in this project: FDA, Huuskonen, NonStar, Star, openchem, SAMPL6, and SAMPL7. The method used to reduce the size of the feature space is [[https://jakevdp.github.io/PythonDataScienceHandbook/05.09-principal-component-analysis.html][principal component analysis (PCA)]]
 
 
 
@@ -14,37 +14,30 @@ There are seven datasets that that was used in this project: FDA, Huuskonen, Non
 You will need to download this repository. So navigate to where you want this repo to go on your computer and type:
 
 #+begin_src sh
-  git clone 
-  conda activate myenv
+  git clone https://github.com/kyrarivest/ACRES_REU_Project_2021.git
 #+end_src
 
-Currently you must manually install some of the dependencies using
-conda. Do this first:
+You will also need to install a couple packages if you do not already have them:
 
 #+begin_src sh
   conda install -c pytorch pytorch
-  conda install -c conda-forge openbabel rdkit
+  conda install -c scikit-learn
+  conda install -c matplotlib
 #+end_src
 
-
-To install from pip:
-
-#+BEGIN_SRC bash
-  pip install classicalgsg
-#+END_SRC
-
-
-You can install from the git repo as well:
+You can also check to see if you have them installed:
 
 #+begin_src sh
-pip install git+https://github.com/ADicksonLab/ClassicalGSG.git
+  conda list | grep scikit-learn
+  conda list | grep pytorch
+  conda list | grep matplotlib
 #+end_src
 
-# TODO: inform about customizing pytorch installation
+
 
 * Usage
 
-To use our CGenFF ClassicalGSG logP predictor model run the following command:
+You will first need to prepare the data to train thee neural network model. You need to decide which datasete you want to train on and how many PCA components to use. Once you know this, navigate to the prepare_data.sb file under ClassicalGSG/examples/prepare_data.sb:
 
 #+BEGIN_SRC bash
  python -m LogpPredictor_CGenFF [molecule.mol2] [molecule.str]
