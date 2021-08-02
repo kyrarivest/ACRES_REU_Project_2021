@@ -57,13 +57,13 @@ Save your changes and exit the file:
  :wq
 #+END_SRC
 
-Now run the *prepare_data.sb* file. This will copy the template directory [[https://github.com/kyrarivest/ACRES_REU_Project_2021/tree/main/examples/cgenffgsg][~classicalgsg~]] and create a new directory set up with the correct PCA number and dataset so that the model can be trained. The directory will be named *cgenffe + <PCA numbere>*. This directory will contain 5 ~train_run~ folders. The training is split up into these 5 folders for [[https://towardsdatascience.com/why-and-how-to-cross-validate-a-model-d6424b45261f][cross validation]]. To run the *prepare_data.sb* file:
+Now run the *prepare_data.sb* file. This will copy the template directory [[https://github.com/kyrarivest/ACRES_REU_Project_2021/tree/main/examples/cgenffgsg][~classicalgsg~]] and create a new directory set up with the correct PCA number and dataset so that the model can be trained. The directory will be named *cgenffe + <PCA number>*. This directory will contain 5 ~train_run~ folders. The training is split up into these 5 folders for [[https://towardsdatascience.com/why-and-how-to-cross-validate-a-model-d6424b45261f][cross validation]]. To run the *prepare_data.sb* file:
 
 #+BEGIN_SRC bash
  sbatch prepare_data.sb
 #+END_SRC
 
-Once the new directory has been generated, navigate into it. If this is not a new *cgenffe + <PCA numbere>* example (it has been trained before), first run the reset.py file to clear the example of it's existing models:
+Once the new directory has been generated, navigate into it. If this is not a new *cgenffe + <PCA number>* example (it has been trained before), first run the reset.py file to clear the example of it's existing models:
 
 #+BEGIN_SRC bash
 python reset.py
@@ -78,10 +78,16 @@ sbatch start_training.sh
 Wait until the training is finished which could take around 30-60min deepending on which dataset you use. If you do not set up email notifications in the *start_training.sh* file, you can check to see if the trianing is done by navigating into each ~train_run~ foldeer and looking at the *train-log*. When a training round is complete, the log will display the training time as the last line in the file.
 
 * Usage: Testing
-When the model has finished training, you can then test it. In the *cgenffe + <PCA numbere>* directory where you executed training, you can also execute testing. Note: if you are testing with a seperate dataset than you used for training, you will have to go back to the [[https://github.com/kyrarivest/ACRES_REU_Project_2021/blob/main/examples/prepare_data.sb][ClassicalGSG/examples/prepare_data.sb]] and re-prepare test data. Otherwise you can test right away. Navigate to the *cgenffe + <PCA numbere>* directory and run:
+When the model has finished training, you can then test it. In the *cgenffe + <PCA number>* directory where you executed training, you can also execute testing. Note: if you are testing with a seperate dataset than you used for training, you will have to go back to the [[https://github.com/kyrarivest/ACRES_REU_Project_2021/blob/main/examples/prepare_data.sb][ClassicalGSG/examples/prepare_data.sb]] and re-prepare test data. Otherwise you can test right away. Navigate to the *cgenffe + <PCA number>* directory and run:
 
 #+BEGIN_SRC bash
 sbatch start_test.sh
 #+END_SRC
 
-This should not take more than 5 min to run. This will enter the testing [[https://www.investopedia.com/terms/r/r-squared.asp#:~:text=R%2Dsquared%20(R2),variables%20in%20a%20regression%20model.&text=It%20may%20also%20be%20known%20as%20the%20coefficient%20of%20determination.][R Squared]] and [[https://towardsdatascience.com/what-does-rmse-really-mean-806b65f2e48e#:~:text=Root%20Mean%20Square%20Error%20(RMSE)%20is%20a%20standard%20way%20to,model%20in%20predicting%20quantitative%20data.&text=This%20tells%20us%20heuristically%20that,the%20vector%20of%20observed%20values.][Root Mean Squared Error]] values into the *results.json* file. Next, run the *save_results.py* file to both print the results out to see and save the averages to the *results.txt file located in the ~ClassicalGSG~ directory for easier result compiling.
+This should not take more than 5 min to run. This will enter the testing [[https://www.investopedia.com/terms/r/r-squared.asp#:~:text=R%2Dsquared%20(R2),variables%20in%20a%20regression%20model.&text=It%20may%20also%20be%20known%20as%20the%20coefficient%20of%20determination.][R Squared]] and [[https://towardsdatascience.com/what-does-rmse-really-mean-806b65f2e48e#:~:text=Root%20Mean%20Square%20Error%20(RMSE)%20is%20a%20standard%20way%20to,model%20in%20predicting%20quantitative%20data.&text=This%20tells%20us%20heuristically%20that,the%20vector%20of%20observed%20values.][Root Mean Squared Error]] values into the *results.json* file. Next, run the *save_results.py* file to both print the results out to see and save the averages to the *results.txt* file located in the ~ClassicalGSG~ directory for easier result compiling.
+
+#+BEGIN_SRC bash
+python save_results.py
+#+END_SRC
+
+You can then view the [[https://github.com/kyrarivest/ACRES_REU_Project_2021/blob/main/examples/results.txt][*results.txt*]] file to see a list of the results for multiple PCA training/testing model examples if you run many.
