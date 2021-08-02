@@ -15,4 +15,4 @@
 
 module load Boost
 
-python get_features_totrain.py 500 openchem train
+prepare_data.py 500 openchem train
