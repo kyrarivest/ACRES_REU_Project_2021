@@ -57,7 +57,7 @@ Save your changes and exit the file:
  :wq
 #+END_SRC
 
-Now run the *prepare_data.sb* file. This will copy the template directory ~classicalgsg~ and create a new directory set up with the correct PCA number and dataset so that the model can be trained. The directory will be named *cgenffe + <PCA numbere>*. This directory will contain 5 ~train_run~ folders. The training is split up into these 5 folders for [[https://towardsdatascience.com/why-and-how-to-cross-validate-a-model-d6424b45261f][cross validation]]. To run the *prepare_data.sb* file:
+Now run the *prepare_data.sb* file. This will copy the template directory [[https://github.com/kyrarivest/ACRES_REU_Project_2021/tree/main/examples/cgenffgsg][~classicalgsg~]] and create a new directory set up with the correct PCA number and dataset so that the model can be trained. The directory will be named *cgenffe + <PCA numbere>*. This directory will contain 5 ~train_run~ folders. The training is split up into these 5 folders for [[https://towardsdatascience.com/why-and-how-to-cross-validate-a-model-d6424b45261f][cross validation]]. To run the *prepare_data.sb* file:
 
 #+BEGIN_SRC bash
  sbatch prepare_data.sb
