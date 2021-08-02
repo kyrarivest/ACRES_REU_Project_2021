@@ -1,73 +1,93 @@
-* ClassicalGSG: Prediction of logP Using Classical Molecular Dynamics Atomic Attributes and  Geometric Scattering Graphs
+* Improving the ClassicalGSG Method: Prediction of logP Using Reduced Moleuclar Feature Spaces
 
-This project is the implementation of a method called ~ClassicalGSG~
-and has introduced in [[https://chemrxiv.org/articles/preprint/ClassicalGSG_Prediction_of_logP_Using_Classical_Molecular_Force_Fields_and_Geometric_Scattering_for_Graphs/13256222][ClassicalGSG: Prediction of logP Using Classical
-Molecular Force Fields and Geometric Scattering for Graphs]] Molecular
-Force Fields and Geometric Scattering for Graphs]].  In this project,
-we aim to predict the partition coefficient value for the small
-molecules.
+This project builds off a method called ~ClassicalGSG~
+and has introduced by the Michigan State University Dickson Lab in [[https://github.com/ADicksonLab/ClassicalGSG][ClassicalGSG: Prediction of logP Using Classical
+Molecular Force Fields and Geometric Scattering for Graphs]].  The goal of this project is to decrease the size of the feature space and study how the model behaves. This is a template of the code that was used in this project.
 
-Here, we use molecular features generated using a recently developed
-method called [[https://arxiv.org/abs/1810.03068][Geometric Scattering for Graphs]] (GSG).  The GSG method
-uses the graph structure of molecules to transform atomic attributes
-into index-variant molecular features.
+There are seven datasets that that was used in this project: FDA, Huuskonen, NonStar, Star, openchem, SAMPL6, and SAMPL7. The method used to reduce the size of the feature space is [[https://jakevdp.github.io/PythonDataScienceHandbook/05.09-principal-component-analysis.html][principal component analysis (PCA)]]
 
-The atomic attributes are generated using two classical molecular
-dynamics force fields generator tool [[https://cgenff.umaryland.edu][CGenFF]] and [[https://ambermd.org/AmberTools.php][Ambertools]].  We train
-ClassicalGSG logP predictor models with neural networks (NNs) which,
-are implemented using [[https://pytorch.org][PyTorch]].
+
 
 
 * Installation
 
-You should use conda to make a new virtual environment:
+You will need to download this repository. So navigate to where you want this repo to go on your computer and type:
 
 #+begin_src sh
-  conda create -n myenv python=3.7
-  conda activate myenv
+  git clone https://github.com/kyrarivest/ACRES_REU_Project_2021.git
 #+end_src
 
-Currently you must manually install some of the dependencies using
-conda. Do this first:
+You will also need to install a couple packages if you do not already have them:
 
 #+begin_src sh
   conda install -c pytorch pytorch
-  conda install -c conda-forge openbabel rdkit
+  conda install -c scikit-learn
+  conda install -c matplotlib
 #+end_src
 
-
-To install from pip:
-
-#+BEGIN_SRC bash
-  pip install classicalgsg
-#+END_SRC
-
-
-You can install from the git repo as well:
+You can also check to see if you have them installed:
 
 #+begin_src sh
-pip install git+https://github.com/ADicksonLab/ClassicalGSG.git
+  conda list | grep scikit-learn
+  conda list | grep pytorch
+  conda list | grep matplotlib
 #+end_src
 
-# TODO: inform about customizing pytorch installation
 
-* Usage
 
-To use our CGenFF ClassicalGSG logP predictor model run the following command:
+* Usage: Training
 
-#+BEGIN_SRC bash
- python -m LogpPredictor_CGenFF [molecule.mol2] [molecule.str]
-#+END_SRC
-
-To use our MMFF94 ClassicalGSG logP predictor model run the following command:
+You will first need to prepare the data to train the neural network model. You need to decide which dataset you want to train on and how many PCA components to use. Once you know this, navigate to the *prepare_data.sb* file under [[https://github.com/kyrarivest/ACRES_REU_Project_2021/blob/main/examples/prepare_data.sb][ClassicalGSG/examples/prepare_data.sb]]. To edit the file, enter it using the vi command:
 
 #+BEGIN_SRC bash
- python -m LogpPredictor_MMFF94  ['smiles']
+ vi prepare.ab
+ i
 #+END_SRC
 
-You can generate CGenFF parameter files for your molecule using [[https://cgenff.umaryland.edu][CGenFF]]
-online server.
+On the line that execute the *prepare_data.py* file, you have to replace the template inputs with your own. Specify:
 
-* Dataset
-The logP dataset can be downloaded from [[https://doi.org/10.5281/zenodo.4531015][Zenodo]].
-Zenodo DOI: 10.5281/zenodo.4531015
+- The number of PCA components (note: this cannot be larger than the numbeer of molecules in the dataset or else the PCA algorithm won't work)
+- The dataset you want to use (choose ~FDA~, ~Huuskonen~, ~Star~, ~NonStar~, ~openchem~, ~SAMPL6~, or ~SAMPL7~)
+- Wether you are preparing data to train the model or test it with a different dataseet than it was already trained on (choose ~train~ or ~test~)
+
+Save your changes and exit the file:
+
+#+BEGIN_SRC bash
+ esc key
+ :wq
+#+END_SRC
+
+Now run the *prepare_data.sb* file. This will copy the template directory [[https://github.com/kyrarivest/ACRES_REU_Project_2021/tree/main/examples/cgenffgsg][~classicalgsg~]] and create a new directory set up with the correct PCA number and dataset so that the model can be trained. The directory will be named *cgenffe + <PCA number>*. This directory will contain 5 ~train_run~ folders. The training is split up into these 5 folders for [[https://towardsdatascience.com/why-and-how-to-cross-validate-a-model-d6424b45261f][cross validation]]. To run the *prepare_data.sb* file:
+
+#+BEGIN_SRC bash
+ sbatch prepare_data.sb
+#+END_SRC
+
+Once the new directory has been generated, navigate into it. If this is not a new *cgenffe + <PCA number>* example (it has been trained before), first run the reset.py file to clear the example of it's existing models:
+
+#+BEGIN_SRC bash
+python reset.py
+#+END_SRC
+
+Then, to train the model, execute the *start_training.sh* file which will initiate training in all 5 ~train_run~ files:
+
+#+BEGIN_SRC bash
+sbatch start_training.sh
+#+END_SRC
+
+Wait until the training is finished which could take around 30-60min deepending on which dataset you use. If you do not set up email notifications in the *start_training.sh* file, you can check to see if the trianing is done by navigating into each ~train_run~ foldeer and looking at the *train-log*. When a training round is complete, the log will display the training time as the last line in the file.
+
+* Usage: Testing
+When the model has finished training, you can then test it. In the *cgenffe + <PCA number>* directory where you executed training, you can also execute testing. Note: if you are testing with a seperate dataset than you used for training, you will have to go back to the [[https://github.com/kyrarivest/ACRES_REU_Project_2021/blob/main/examples/prepare_data.sb][ClassicalGSG/examples/prepare_data.sb]] and re-prepare test data. Otherwise you can test right away. Navigate to the *cgenffe + <PCA number>* directory and run:
+
+#+BEGIN_SRC bash
+sbatch start_test.sh
+#+END_SRC
+
+This should not take more than 5 min to run. This will enter the testing [[https://www.investopedia.com/terms/r/r-squared.asp#:~:text=R%2Dsquared%20(R2),variables%20in%20a%20regression%20model.&text=It%20may%20also%20be%20known%20as%20the%20coefficient%20of%20determination.][R Squared]] and [[https://towardsdatascience.com/what-does-rmse-really-mean-806b65f2e48e#:~:text=Root%20Mean%20Square%20Error%20(RMSE)%20is%20a%20standard%20way%20to,model%20in%20predicting%20quantitative%20data.&text=This%20tells%20us%20heuristically%20that,the%20vector%20of%20observed%20values.][Root Mean Squared Error]] values into the *results.json* file. Next, run the *save_results.py* file to both print the results out to see and save the averages to the *results.txt* file located in the ~ClassicalGSG~ directory for easier result compiling.
+
+#+BEGIN_SRC bash
+python save_results.py
+#+END_SRC
+
+You can then view the [[https://github.com/kyrarivest/ACRES_REU_Project_2021/blob/main/examples/results.txt][*results.txt*]] file to see a list of the results for multiple PCA training/testing model examples if you run many. The first value is the r squared and the second value is the RMSE.
