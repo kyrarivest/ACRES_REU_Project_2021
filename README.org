@@ -4,7 +4,7 @@ This project builds off a method called ~ClassicalGSG~
 and has introduced by the Michigan State University Dickson Lab in [[https://github.com/ADicksonLab/ClassicalGSG][ClassicalGSG: Prediction of logP Using Classical
 Molecular Force Fields and Geometric Scattering for Graphs]].  The goal of this project is to decrease the size of the feature space and study how the model behaves. This is a template of the code that was used in this project.
 
-There are seven datasets that that was used in this project: FDA, Huuskonen, NonStar, Star, openchem, SAMPL6, and SAMPL7. The method used to reduce the size of the feature space is [[https://jakevdp.github.io/PythonDataScienceHandbook/05.09-principal-component-analysis.html][principal component analysis (PCA)]]
+There are seven datasets that that was used in this project: FDA, Huuskonen, NonStar, Star, OpenChem, SAMPL6, and SAMPL7. The method used to reduce the size of the feature space is [[https://jakevdp.github.io/PythonDataScienceHandbook/05.09-principal-component-analysis.html][principal component analysis (PCA)]]. 
 
 
 
