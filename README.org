@@ -1,17 +1,19 @@
-* Improving the ClassicalGSG Method: Prediction of logP Using Reduced Moleuclar Feature Spaces
+* Improving the ClassicalGSG Method: Prediction of logP Using Reduced Molecular Feature Spaces
 
-This project builds off a method called ~ClassicalGSG~
-and has introduced by the Michigan State University Dickson Lab in [[https://github.com/ADicksonLab/ClassicalGSG][ClassicalGSG: Prediction of logP Using Classical
-Molecular Force Fields and Geometric Scattering for Graphs]].  The goal of this project is to decrease the size of the feature space and study how the model behaves. This is a template of the code that was used in this project.
+This is my project for the Advanced Computational Research Experience REU hosted by Michigan State University. I worked, specifically, in the [[https://www.egr.msu.edu/~alexrd/][Dickson Lab]] which works within the [[https://bmb.natsci.msu.edu/][Biochemistry & Molecular Biology]], [[https://cmse.msu.edu/][Computational Science, Mathematics and Engineering]], and [[https://icer.msu.edu/][Institute for Cyber-Enabled Research]]. 
 
-There are seven datasets that that was used in this project: FDA, Huuskonen, NonStar, Star, OpenChem, SAMPL6, and SAMPL7. The method used to reduce the size of the feature space is [[https://jakevdp.github.io/PythonDataScienceHandbook/05.09-principal-component-analysis.html][principal component analysis (PCA)]]. 
+My project builds off a method called ~ClassicalGSG~
+and has introduced by the Dickson Lab in [[https://github.com/ADicksonLab/ClassicalGSG][ClassicalGSG: Prediction of logP Using Classical
+Molecular Force Fields and Geometric Scattering for Graphs]]. The goal was to build off of this project by studying how to model behavees when the size of the feature space is decreased.
+
+There are seven datasets that that was used in this project: FDA, Huuskonen, NonStar, Star, OpenChem, SAMPL6, and SAMPL7. The method used to reduce the size of the feature space is [[https://jakevdp.github.io/PythonDataScienceHandbook/05.09-principal-component-analysis.html][principal component analysis (PCA)]]. This repository contains serveral run examples, each using a different number of PCA components. Below are instructions for how to simulate a new example.
 
 
 
 
 * Installation
 
-You will need to download this repository. So navigate to where you want this repo to go on your computer and type:
+You will need to download this repository. Navigate to where you want this repo to go on your computer and type:
 
 #+begin_src sh
   git clone https://github.com/kyrarivest/ACRES_REU_Project_2021.git
